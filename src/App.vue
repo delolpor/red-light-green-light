@@ -1,11 +1,7 @@
+<script setup>
+import TheToast from "./components/layout/TheToast.vue";
+</script>
 <template>
   <router-view />
+  <the-toast />
 </template>
-
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'App'
-})
-</script>
