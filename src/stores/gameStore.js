@@ -43,16 +43,19 @@ export const useGameStore = defineStore("gameStore", {
     },
     loseGame() {
       const appStore = useAppStore();
+
+      vibrate();
+
       this.saveScore();
       appStore.showToast(
-        `You have lost. Your score was ${this.getHighScoreFromActivePlayer}`,
+        `Game over.
+         Your score was ${this.getHighScoreFromActivePlayer}`,
         "info"
       );
       this.resetScore();
     },
     takeStep(foot, lightIsGreen) {
       if (!lightIsGreen) {
-        vibrate();
         this.loseGame();
       } else {
         foot === this.lastFootUsed ? this.decrement() : this.increment();
