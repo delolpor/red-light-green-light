@@ -21,7 +21,7 @@ const createPlayer = () => {
   <h1>Create new player</h1>
   <form class="form" @submit.prevent="createPlayer">
     <q-input v-model="playerName" label="Introduce your name" />
-    <q-btn @click="createPlayer" color="primary" label="JOIN" />
+    <q-btn @click="createPlayer" color="primary" label="Start a new game" />
   </form>
 </template>
 

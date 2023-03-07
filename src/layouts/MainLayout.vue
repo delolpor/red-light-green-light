@@ -8,7 +8,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-page-container>
+    <q-page-container class="main-content">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -21,3 +21,8 @@ export default defineComponent({
   name: "MainLayout",
 });
 </script>
+<style lang="scss" scoped>
+.main-content {
+  padding: 1rem;
+}
+</style>
