@@ -1,12 +1,14 @@
 <script setup>
-import { useUserStore } from "src/stores/userStore";
+import { useGameStore } from "src/stores/gameStore";
 
-const userStore = useUserStore();
+const gameStore = useGameStore();
 </script>
 <template>
   <div class="score">
-    <p class="score__user">Player: {{ userStore.playerName }}</p>
-    <p class="score__points">Score: {{ userStore.playerScore }}</p>
+    <p class="score__user">Player: {{ gameStore.playerName }}</p>
+    <Transition>
+      <p class="score__points">Score: {{ gameStore.playerScore }}</p>
+    </Transition>
   </div>
 </template>
 <style lang="scss" scoped>

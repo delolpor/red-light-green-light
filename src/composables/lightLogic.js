@@ -1,11 +1,11 @@
 import { ref, onMounted } from "vue";
-import { useUserStore } from "src/stores/userStore";
-const userStore = useUserStore();
+import { useGameStore } from "src/stores/gameStore";
+const gameStore = useGameStore();
 
 export function useLight() {
   const lightIsGreen = ref(false);
 
-  const score = userStore.playerScore;
+  const score = gameStore.playerScore;
 
   const timeoutRedLight = 3000;
   const timeoutGreenLight =

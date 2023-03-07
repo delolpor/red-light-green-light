@@ -1,16 +1,16 @@
 <script setup>
-import { useUserStore } from "src/stores/userStore";
+import { useGameStore } from "src/stores/gameStore";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const playerName = ref("");
 
-const userStore = useUserStore();
+const gameStore = useGameStore();
 
 const createPlayer = () => {
   if (playerName.value) {
-    userStore.savePlayer(playerName.value);
+    gameStore.savePlayer(playerName.value);
 
     router.push("/game");
   }

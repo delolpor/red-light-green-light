@@ -24,5 +24,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .main-content {
   padding: 1rem;
+  height: calc(100vh - (50px + 2rem));
 }
 </style>
