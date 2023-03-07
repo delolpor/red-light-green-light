@@ -31,6 +31,7 @@ const createPlayer = () => {
   flex-flow: column;
   justify-content: space-evenly;
   width: 90%;
+  height: calc(100vh - (50px + 2rem));
   margin: auto;
 }
 </style>
