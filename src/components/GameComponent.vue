@@ -24,8 +24,8 @@ const gameStore = useGameStore();
 </template>
 <style lang="scss" scoped>
 .game {
-  padding: 2rem;
-  height: 100%;
+  padding: 0 1rem 2rem 1rem;
+  height: 90%;
   display: grid;
   grid-template-rows: 5fr auto;
   grid-template-areas:

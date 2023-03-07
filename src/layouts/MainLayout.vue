@@ -23,7 +23,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .main-content {
-  padding: 1rem;
+  padding: 0 1rem;
   height: calc(100vh - (50px + 2rem));
 }
 </style>
