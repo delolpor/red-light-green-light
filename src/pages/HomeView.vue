@@ -1,5 +1,6 @@
 <script setup>
 import { useGameStore } from "src/stores/gameStore";
+import { useAppStore } from "src/stores/appStore";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -7,12 +8,15 @@ const router = useRouter();
 const playerName = ref("");
 
 const gameStore = useGameStore();
+const appStore = useAppStore();
 
 const createPlayer = () => {
-  if (playerName.value) {
+  if (playerName.value.trim()) {
     gameStore.savePlayer(playerName.value);
 
     router.push("/game");
+  } else {
+    appStore.showToast(`The name cannot be empty`, "warning");
   }
 };
 </script>
@@ -31,7 +35,7 @@ const createPlayer = () => {
   flex-flow: column;
   justify-content: space-evenly;
   width: 90%;
-  height: calc(100vh - (50px + 2rem));
+  height: calc(100% - 6rem);
   margin: auto;
 }
 </style>

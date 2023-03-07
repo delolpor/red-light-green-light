@@ -19,17 +19,22 @@ watch(
 </script>
 <template>
   <div class="score">
-    <p class="score__high-score">
-      High score: {{ gameStore.getHighScoreFromActivePlayer }}
+    <p class="score__user">
+      Welcome{{ gameStore.checkForReturningPlayer() ? " back" : "" }},
+      {{ gameStore.playerName }}
     </p>
+
     <Transition>
       <p class="score__points">Score: {{ animatedNumber }}</p>
     </Transition>
+    <p class="score__high-score">
+      High score: {{ gameStore.getHighScoreFromActivePlayer }}
+    </p>
   </div>
 </template>
 <style lang="scss" scoped>
 .score {
-  width: 60vw;
+  width: 80vw;
   background-color: $secondary;
   border-radius: 5px;
   margin: auto;
@@ -41,6 +46,9 @@ watch(
   align-items: center;
   justify-content: space-evenly;
   box-shadow: 0.25rem 0.25rem;
+  p {
+    margin: 0;
+  }
 
   &__user,
   &__points {

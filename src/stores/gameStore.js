@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { useAppStore } from "./appStore";
+import { vibrate } from "src/utils/vibration";
 
 export const useGameStore = defineStore("gameStore", {
   state: () => ({
@@ -18,7 +19,13 @@ export const useGameStore = defineStore("gameStore", {
   },
   actions: {
     savePlayer(playerName) {
-      this.playerName = playerName;
+      if (playerName !== "") {
+        this.playerName = playerName;
+      } else {
+      }
+    },
+    checkForReturningPlayer() {
+      return Object.keys(this.savedHighScores).includes(this.playerName);
     },
     saveScore() {
       if (this.playerScore > this.getHighScoreFromActivePlayer) {
@@ -38,13 +45,14 @@ export const useGameStore = defineStore("gameStore", {
       const appStore = useAppStore();
       this.saveScore();
       appStore.showToast(
-        `You have lost. Your score was ${this.playerScore}`,
+        `You have lost. Your score was ${this.getHighScoreFromActivePlayer}`,
         "info"
       );
       this.resetScore();
     },
     takeStep(foot, lightIsGreen) {
       if (!lightIsGreen) {
+        vibrate();
         this.loseGame();
       } else {
         foot === this.lastFootUsed ? this.decrement() : this.increment();
