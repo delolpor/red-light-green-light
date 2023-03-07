@@ -1,7 +1,8 @@
 <script setup>
 import UserScore from "../components/UserScore.vue";
+import GameComponent from "../components/GameComponent.vue";
 </script>
 <template>
-  <h1>GAME</h1>
   <user-score />
+  <game-component />
 </template>

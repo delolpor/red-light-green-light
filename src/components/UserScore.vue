@@ -15,6 +15,7 @@ const userStore = useUserStore();
   background-color: $secondary;
   border-radius: 5px;
   margin: auto;
+  margin-top: 1rem;
   padding: 1rem;
   color: $font-color-light;
   display: flex;
