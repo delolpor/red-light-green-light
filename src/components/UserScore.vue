@@ -1,6 +1,6 @@
 <script setup>
 import { useGameStore } from "src/stores/gameStore";
-import { watch, computed, ref } from "vue";
+import { watch, computed, ref, onMounted, nextTick } from "vue";
 
 const gameStore = useGameStore();
 
@@ -9,13 +9,19 @@ const tweenedNumber = ref(0);
 const animatedNumber = computed(() => {
   return tweenedNumber.value.toFixed(0);
 });
-
+const animate = (newValue) => {
+  gsap.to(tweenedNumber, { duration: 0.5, value: newValue });
+};
 watch(
   () => gameStore.playerScore,
   (newValue, oldValue) => {
-    gsap.to(tweenedNumber, { duration: 0.5, value: newValue });
+    animate(newValue);
   }
 );
+
+onMounted(() => {
+  animate(gameStore.playerScore);
+});
 </script>
 <template>
   <div class="score">
@@ -28,7 +34,7 @@ watch(
       <p class="score__points">Score: {{ animatedNumber }}</p>
     </Transition>
     <p class="score__high-score">
-      High score: {{ gameStore.getHighScoreFromActivePlayer }}
+      Previous high score: {{ gameStore.getHighScoreFromActivePlayer }}
     </p>
   </div>
 </template>
