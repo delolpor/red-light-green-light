@@ -5,6 +5,7 @@ import { vibrate } from "src/utils/vibration";
 export const useGameStore = defineStore("gameStore", {
   state: () => ({
     playerName: "",
+    activeScore: {},
     playerScore: 0,
     lastFootUsed: null,
     savedHighScores: {},
@@ -16,15 +17,23 @@ export const useGameStore = defineStore("gameStore", {
     getHighScoreFromActivePlayer() {
       return this.savedHighScores[this.playerName] ?? 0;
     },
+    getLastScore() {
+      return this.activeScore[this.playerName] ?? 0;
+    },
   },
   actions: {
     savePlayer(playerName) {
       if (playerName !== "") {
         this.playerName = playerName;
-      } else {
+        if (!this.checkForReturningPlayer) {
+          this.activeScore[playerName] = 0;
+        } else {
+          this.playerScore = this.getLastScore;
+        }
       }
     },
     logout() {
+      this.saveScore();
       this.playerName = "";
       this.router.push({ name: "Home" });
     },
@@ -32,6 +41,9 @@ export const useGameStore = defineStore("gameStore", {
       return Object.keys(this.savedHighScores).includes(this.playerName);
     },
     saveScore() {
+      // Last score
+      this.activeScore[this.playerName] = this.playerScore;
+      // High score
       if (this.playerScore > this.getHighScoreFromActivePlayer) {
         this.savedHighScores[this.playerName] = this.playerScore;
       }
