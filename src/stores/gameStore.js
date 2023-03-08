@@ -24,6 +24,10 @@ export const useGameStore = defineStore("gameStore", {
       } else {
       }
     },
+    logout() {
+      this.playerName = "";
+      this.router.push({ name: "Home" });
+    },
     checkForReturningPlayer() {
       return Object.keys(this.savedHighScores).includes(this.playerName);
     },
