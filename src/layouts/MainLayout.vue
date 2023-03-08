@@ -1,10 +1,22 @@
+<script setup>
+import { useRoute } from "vue-router";
+import { useGameStore } from "src/stores/gameStore";
+
+const route = useRoute();
+const gameStore = useGameStore();
+const logout = () => {
+  gameStore.logout();
+};
+</script>
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title> RLGL </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div v-if="route.name !== 'Home'" @click="logout">
+          <q-icon size="24px" name="logout" />
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -14,13 +26,6 @@
   </q-layout>
 </template>
 
-<script>
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "MainLayout",
-});
-</script>
 <style lang="scss" scoped>
 .main-content {
   padding: 0 1rem;
